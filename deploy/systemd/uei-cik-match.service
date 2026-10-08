@@ -1,0 +1,21 @@
+[Unit]
+Description=Exact USAspending UEI to listed SEC CIK match
+Documentation=file:///opt/uei-cik/docs/DAILY_OPS.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ueicik
+Group=ueicik
+Nice=10
+EnvironmentFile=-/opt/uei-cik/etc/uei-cik.env
+WorkingDirectory=/opt/uei-cik
+ExecStart=/opt/uei-cik/scripts/run-match.sh
+TimeoutStartSec=10h
+SyslogIdentifier=uei-cik-match
+ReadWritePaths=/var/lib/uei-cik /var/lib/state-capture -/run/state
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+NoNewPrivileges=true

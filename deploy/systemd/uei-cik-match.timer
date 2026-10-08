@@ -1,0 +1,12 @@
+[Unit]
+Description=Exact USAspending UEI to listed SEC CIK match
+Documentation=file:///opt/uei-cik/docs/DAILY_OPS.md
+
+[Timer]
+OnCalendar=Sun *-*-* 09:00:00 UTC
+Persistent=true
+RandomizedDelaySec=30m
+Unit=uei-cik-match.service
+
+[Install]
+WantedBy=timers.target
